@@ -3,14 +3,14 @@ const {v4: uuidv4} = require('uuid');
 const fs = require('fs');
 const router = express.Router();
 const path = require('path');
-const VideoPath = path.join(__dirname, '..', 'data', 'videos.json');
+const videoPath = path.join(__dirname, '..', 'data', 'videos.json');
 
 const readVideos = () => {
-    return JSON.parse(fs.readFileSync(VideoPath));
+    return JSON.parse(fs.readFileSync(videoPath));
 };
 
 const writeVideos = (data) => {
-    fs.writeFileSync(VideoPath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(videoPath, JSON.stringify(data, null, 2));
 };
 
 router.get('/', (req, res) => {
