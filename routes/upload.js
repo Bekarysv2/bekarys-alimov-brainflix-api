@@ -6,8 +6,8 @@ const videoDetailsPath = path.join(__dirname, '..', 'data', 'video-details.json'
 const videoPath = path.join(__dirname, '..', 'data', 'videos.json');
 const {v4: uuidv4} = require('uuid');
 
-const readVideos = (filePath) => JSON.parse(fs.readFileSync(filePath));
-const writeVideos = (filePath, data) => fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+const readVideos = () => JSON.parse(fs.readFileSync(filePath));
+const writeVideos = (data) => fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
 router.post('/', (req, res) => {
     const { title, description } = req.body;
