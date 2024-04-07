@@ -15,7 +15,12 @@ const writeVideos = (data) => {
 
 router.get('/', (req, res) => {
     const videos = readVideos();
-    const listVideos = videos.map(({id, title, channel, image}) => ({id, title, channel, image}));
+    const listVideos = videos.map(video => ({
+        id: video.id, 
+        title: video.title, 
+        channel: video.channel, 
+        image: video.image 
+    }));
     res.json(listVideos);
 });
 
