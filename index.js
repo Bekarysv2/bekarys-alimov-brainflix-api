@@ -1,12 +1,12 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const path = require('path');
 const app = express();
 const cors = require('cors');
 const videoRoutes = require('./routes/video')
 const videoDetailsRoutes = require('./routes/video-details');
 const uploadRoutes = require('./routes/upload');
 require('dotenv').config();
+
 
 const port = process.env.PORT || 8080;
 
