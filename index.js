@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const videoRoutes = require('./routes/video')
+const videoDetailsRoutes = require('./routes/video-details');
 require('dotenv').config();
 
 const port = process.env.PORT || 8080;
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.use('/videos', videoRoutes);
+app.use('/videos', videoDetailsRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
