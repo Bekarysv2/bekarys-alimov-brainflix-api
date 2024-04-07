@@ -6,7 +6,7 @@ const path = require('path');
 const VideoPath = path.join(__dirname, '..', 'data', 'videos.json');
 
 const readVideos = () => {
-    return JSON.parse(fs.readFileSync(VideoPath, 'utf8'));
+    return JSON.parse(fs.readFileSync(VideoPath));
 };
 
 const writeVideos = (data) => {
@@ -15,32 +15,22 @@ const writeVideos = (data) => {
 
 router.get('/', (req, res) => {
     const videos = readVideos();
-    const listVideos = videos.map(({id, title, image}) => ({id, title, image}));
+    const listVideos = videos.map(({id, title, channel, image}) => ({id, title, channel, image}));
     res.json(listVideos);
 });
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const videos = readVideos();
-    const video = videos.find(video => video.id === id);
-    if (video) {
-        res.json(video);
-    }   else {
-        res.status(404).send('Video not found')
-    }
-});
-
 router.post('/', (req, res) => {
-    const { title, description = '', channel = 'Unknown' } = req.body;
+    const { title, channel, image } = req.body;
     const videos = readVideos();
     const newVideo = {
         id: uuidv4(),
         title,
-        description,
-        image: 'http://localhost:8080/images/Upload-video-preview.jpg',
+        channel,
+        image
     }
     videos.push(newVideo);
     writeVideos(videos);
+    
     res.status(201).json(newVideo);
 });
 
