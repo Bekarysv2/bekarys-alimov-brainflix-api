@@ -9,7 +9,7 @@ const {v4: uuidv4} = require('uuid');
 const readVideos = () => JSON.parse(fs.readFileSync(filePath));
 const writeVideos = (data) => fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
-router.post('/', (req, res) => {
+router.post('/:id', (req, res) => {
     const { title, description } = req.body;
 
     const newVideo = {
@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
         title, 
         description, 
         channel: 'Placeholder channel',
-        image: '/images/Upload-video-preview.jpg',
+        image: '../public/images/Upload-video-preview.jpg',
         views: '0',
         likes: '0',
         duration: '0:00',
